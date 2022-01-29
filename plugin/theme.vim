@@ -1,4 +1,6 @@
 " Clear highlights
+
+" Init Theme: {{{
 hi clear
 if exists("syntax_on")
   syntax reset
@@ -30,6 +32,7 @@ let g:improved_warnings=0
 let s:vim_bg  = 'bg'
 let s:vim_fg  = 'fg'
 let s:none    = 'NONE'
+" }}}
 
 " Highlighting Function: {{{
 
