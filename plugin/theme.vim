@@ -13,25 +13,22 @@ set termguicolors
 set signcolumn=yes:2
 set background=dark
 
-let g:bold=1
-
-let g:italic=1
-
-let g:undercurl=1
-
-let g:underline=1
-
-let g:inverse=1
-
-let g:guisp_fallback='NONE'
-
-let g:improved_strings=0
-
-let g:improved_warnings=0
+set background=dark
 
 let s:vim_bg  = 'bg'
 let s:vim_fg  = 'fg'
 let s:none    = 'NONE'
+
+let s:bold = 'bold,'
+let s:italic = 'italic,'
+let s:underline = 'underline,'
+let s:undercurl = 'undercurl,'
+let s:inverse = 'inverse,'
+
+let s:invert_signs = ''
+let s:invert_tabline = ''
+let s:invert_selection = s:inverse
+
 " }}}
 
 " Highlighting Function: {{{
@@ -61,18 +58,6 @@ function! s:HL(group, fg, ...)
     let emstr = 'NONE,'
   endif
 
-  " special fallback
-  if a:0 >= 3
-    if g:guisp_fallback != 'NONE'
-      let fg = a:3
-    endif
-
-    " bg fallback mode should invert higlighting
-    if g:guisp_fallback == 'bg'
-      let emstr .= 'inverse,'
-    endif
-  endif
-
   let histring = [ 'hi', a:group, 'guifg=' . fg, 'guibg=' . bg, 'gui=' . emstr[:-2] ]
 
   " special
@@ -83,48 +68,6 @@ function! s:HL(group, fg, ...)
   execute join(histring, ' ')
 endfunction
 
-" }}}
-
-" GUI Strings: {{{
-let s:bold = 'bold,'
-if g:bold == 0
-  let s:bold = ''
-endif
-
-let s:italic = 'italic,'
-if g:italic == 0
-  let s:italic = ''
-endif
-
-let s:underline = 'underline,'
-if g:underline == 0
-  let s:underline = ''
-endif
-
-let s:undercurl = 'undercurl,'
-if g:undercurl == 0
-  let s:undercurl = ''
-endif
-
-let s:inverse = 'inverse,'
-if g:inverse == 0
-  let s:inverse = ''
-endif
-
-let s:hls_cursor = s:orange
-
-let s:number_column = s:bg0
-let s:color_column = s:bg0
-let s:sign_column = s:bg0
-
-let s:vert_split = s:bg1
-
-let s:italicize_comments = s:italic
-let s:italicize_strings = s:italic
-
-let s:invert_signs = ''
-let s:invert_tabline = ''
-let s:invert_selection = s:inverse
 " }}}
 
 " Hi Groups: {{{
@@ -157,13 +100,13 @@ call s:HL('AquaBold',   s:bright_aqua, s:none, s:bold)
 call s:HL('Orange',     s:bright_orange)
 call s:HL('OrangeBold', s:bright_orange, s:none, s:bold)
 
-call s:HL('RedSign',    s:bright_red, s:sign_column, s:invert_signs)
-call s:HL('GreenSign',  s:bright_green, s:sign_column, s:invert_signs)
-call s:HL('YellowSign', s:bright_yellow, s:sign_column, s:invert_signs)
-call s:HL('BlueSign',   s:bright_blue, s:sign_column, s:invert_signs)
-call s:HL('PurpleSign', s:bright_purple, s:sign_column, s:invert_signs)
-call s:HL('AquaSign',   s:bright_aqua, s:sign_column, s:invert_signs)
-call s:HL('OrangeSign', s:bright_orange, s:sign_column, s:invert_signs)
+call s:HL('RedSign',    s:bright_red, s:bg0, s:invert_signs)
+call s:HL('GreenSign',  s:bright_green, s:bg0, s:invert_signs)
+call s:HL('YellowSign', s:bright_yellow, s:bg0, s:invert_signs)
+call s:HL('BlueSign',   s:bright_blue, s:bg0, s:invert_signs)
+call s:HL('PurpleSign', s:bright_purple, s:bg0, s:invert_signs)
+call s:HL('AquaSign',   s:bright_aqua, s:bg0, s:invert_signs)
+call s:HL('OrangeSign', s:bright_orange, s:bg0, s:invert_signs)
 
 " }}}
 
@@ -172,8 +115,6 @@ call s:HL('OrangeSign', s:bright_orange, s:sign_column, s:invert_signs)
 
 " Normal text
 call s:HL('Normal', s:fg1, s:bg0)
-
-set background=dark
 
 " Screen line that the cursor is
 call s:HL('CursorLine', s:none, s:bg1)
@@ -191,7 +132,6 @@ hi! link TabLine TabLineFill
 call s:HL('MatchParen', s:none, s:bg3, s:bold)
 
 " Highlighted screen columns
-call s:HL('ColorColumn',  s:none, s:color_column)
 
 " Concealed element: \lambda → λ
 call s:HL('Conceal', s:bright_blue, s:none)
@@ -205,8 +145,8 @@ hi! link SpecialKey Bg2
 call s:HL('Visual', s:none,  s:bg3, s:invert_selection)
 hi! link VisualNOS Visual
 
-call s:HL('Search', s:bright_yellow, s:bg0, s:inverse)
-call s:HL('IncSearch', s:hls_cursor, s:bg0, s:inverse)
+call s:HL('Search', s:bright_blue, s:bg0, s:inverse)
+call s:HL('IncSearch', s:bright_blue, s:bg0, s:inverse)
 
 call s:HL('Underlined', s:bright_blue, s:none, s:underline)
 
@@ -242,7 +182,7 @@ call s:HL('EndOfBuffer', s:vim_bg)
 " Gutter: {{{
 
 " Line number for :number and :# commands
-call s:HL('LineNr', s:bg4, s:number_column)
+call s:HL('LineNr', s:bg4, s:bg0)
 
 " Column where signs are displayed
 call s:HL('SignColumn', s:fg2, s:bg0)
@@ -267,13 +207,8 @@ hi! link lCursor Cursor
 " }}}
 " Syntax Highlighting: {{{
 
-if g:improved_strings == 0
-  hi! link Special Orange
-else
-  call s:HL('Special', s:bright_orange, s:bg1, s:italicize_strings)
-endif
-
-call s:HL('Comment', s:gray, s:none, s:italicize_comments)
+call s:HL('Special', s:bright_orange, s:bg1, s:italic)
+call s:HL('Comment', s:gray, s:none, s:italic)
 call s:HL('Todo', s:vim_fg, s:vim_bg, s:bold . s:italic)
 call s:HL('Error', s:bright_red, s:vim_bg, s:bold . s:inverse)
 
@@ -313,11 +248,7 @@ hi! link Constant Purple
 " Character constant: 'c', '/n'
 hi! link Character Purple
 " String constant: "this is a string"
-if g:improved_strings == 0
-  call s:HL('String',  s:bright_green, s:none, s:italicize_strings)
-else
-  call s:HL('String',  s:fg1, s:bg1, s:italicize_strings)
-endif
+call s:HL('String', s:faded_green, s:none, s:italic)
 " Boolean constant: TRUE, false
 hi! link Boolean Purple
 " Number constant: 234, 0xff
@@ -363,11 +294,7 @@ call s:HL('DiffText',   s:bright_yellow, s:bg0, s:inverse)
 
 if has("spell")
   " Not capitalised word, or compile warnings
-  if g:improved_warnings == 0
-    call s:HL('SpellCap',   s:none, s:none, s:undercurl, s:bright_red)
-  else
-    call s:HL('SpellCap',   s:bright_green, s:none, s:bold . s:italic)
-  endif
+  call s:HL('SpellCap',   s:bright_green, s:none, s:bold . s:italic)
   " Not recognized word
   call s:HL('SpellBad',   s:none, s:none, s:undercurl, s:bright_blue)
   " Wrong spelling for selected region
@@ -391,10 +318,10 @@ endfunction
 " IndentLine: {{{
 
 if !exists('g:indentLine_color_term')
-  let g:indentLine_color_term = s:bg2[1]
+  let g:indentLine_color_term = s:bg2
 endif
 if !exists('g:indentLine_color_gui')
-  let g:indentLine_color_gui = s:bg2[0]
+  let g:indentLine_color_gui = s:bg2
 endif
 
 " }}}
@@ -507,7 +434,7 @@ hi! link xmlEntityPunct Orange
 " }}}
 " Vim: {{{
 
-call s:HL('vimCommentTitle', s:fg4, s:none, s:bold . s:italicize_comments)
+call s:HL('vimCommentTitle', s:fg4, s:none, s:bold . s:italic)
 
 hi! link vimNotation Orange
 hi! link vimBracket Orange
