@@ -282,10 +282,6 @@ call s:HL('PmenuThumb', s:none, s:bg4)
 
 call s:HL('DiffDelete', s:bright_red, s:bg0, s:inverse)
 call s:HL('DiffAdd',    s:bright_green, s:bg0, s:inverse)
-"call s:HL('DiffChange', s:bg0, s:bright_blue)
-"call s:HL('DiffText',   s:bg0, s:bright_yellow)
-
-" Alternative setting
 call s:HL('DiffChange', s:bright_aqua, s:bg0, s:inverse)
 call s:HL('DiffText',   s:bright_yellow, s:bg0, s:inverse)
 
