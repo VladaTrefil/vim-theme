@@ -145,8 +145,8 @@ hi! link SpecialKey Bg2
 call s:HL('Visual', s:none,  s:bg3, s:invert_selection)
 hi! link VisualNOS Visual
 
-call s:HL('Search', s:bright_blue, s:bg0, s:inverse)
-call s:HL('IncSearch', s:bright_blue, s:bg0, s:inverse)
+call s:HL('Search', s:bright_yellow, s:bg0, s:inverse)
+call s:HL('IncSearch', s:bright_yellow, s:bg0, s:inverse)
 
 call s:HL('Underlined', s:bright_blue, s:none, s:underline)
 
