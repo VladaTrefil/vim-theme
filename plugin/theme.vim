@@ -361,6 +361,14 @@ call s:HL('CocInfoHighlight', s:none, s:none, s:undercurl, s:bright_yellow)
 call s:HL('CocHintHighlight', s:none, s:none, s:undercurl, s:bright_blue)
 
 " }}}
+" EasyMotion: {{{
+
+call s:HL('EasyMotionTarget', s:yellow, s:none, s:bold)
+call s:HL('EasyMotionTarget2First', s:faded_yellow, s:none, s:bold)
+call s:HL('EasyMotionTarget2Second', s:yellow, s:none, s:bold)
+call s:HL('EasyMotionShade', s:bg4, s:none, s:italic)
+
+" }}}
 
 " Filetype specific -----------------------------------------------------------
 " Diff: {{{
