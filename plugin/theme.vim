@@ -337,7 +337,7 @@ hi! link ALEWarningSign YellowSign
 hi! link ALEInfoSign BlueSign
 
 " }}}
-" coc.nvim: {{{
+" Conquer Of Completion: {{{
 
 hi! link CocErrorSign RedSign
 hi! link CocWarningSign OrangeSign
