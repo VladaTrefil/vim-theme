@@ -314,7 +314,7 @@ endfunction
 " IndentLine: {{{
 
 if !exists('g:indentLine_color_gui')
-  let g:indentLine_color_gui = s:bg3
+  let g:indentLine_color_gui = s:bg4
 endif
 
 " }}}
