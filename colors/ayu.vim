@@ -39,3 +39,5 @@ let g:palette.bright_blue   = '#36A3D9'
 let g:palette.bright_purple = '#b74e99'
 let g:palette.bright_aqua   = '#70ccc4'
 let g:palette.bright_orange = '#f67e0f'
+
+hi VertSplit guibg=#131721 guifg=#131721
