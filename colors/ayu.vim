@@ -3,7 +3,7 @@
 let g:palette = {}
 
 let g:palette.bg0           = '#0B0E14'
-let g:palette.bg1           = '#0D1017'
+let g:palette.bg1           = '#1f2933'
 let g:palette.bg2           = '#131721'
 let g:palette.bg3           = '#253340'
 let g:palette.bg4           = '#3E4B59'
@@ -39,5 +39,3 @@ let g:palette.bright_blue   = '#36A3D9'
 let g:palette.bright_purple = '#b74e99'
 let g:palette.bright_aqua   = '#70ccc4'
 let g:palette.bright_orange = '#f67e0f'
-
-hi VertSplit guibg=#131721 guifg=#131721
