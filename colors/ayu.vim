@@ -3,8 +3,8 @@
 let g:palette = {}
 
 let g:palette.bg0           = '#0B0E14'
-let g:palette.bg1           = '#1f2933'
-let g:palette.bg2           = '#131721'
+let g:palette.bg1           = '#0D1017'
+let g:palette.bg2           = '#1f2933'
 let g:palette.bg3           = '#253340'
 let g:palette.bg4           = '#3E4B59'
 
