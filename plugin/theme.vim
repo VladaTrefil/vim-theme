@@ -409,6 +409,19 @@ call s:HL('EasyMotionTarget2Second', s:yellow, s:none, s:bold)
 call s:HL('EasyMotionShade', s:bg4, s:none, s:italic)
 
 " }}}
+" Lualine: {{{
+
+  call s:HL('lualine_a_normal',   s:bg0,  s:aqua, s:bold)
+  call s:HL('lualine_b_normal',   s:fg0,  s:bg2, s:bold)
+  call s:HL('lualine_c_normal',   s:bg0,  s:bg0, s:bold)
+  call s:HL('lualine_a_insert',   s:bg0,  s:yellow, s:bold)
+  call s:HL('lualine_a_replace',  s:bg0,  s:orange, s:bold)
+  call s:HL('lualine_a_visual',   s:fg0,  s:bright_red, s:bold)
+  call s:HL('lualine_a_inactive', s:bg2,  s:bg1)
+  call s:HL('lualine_b_inactive', s:none, s:bg1)
+  call s:HL('lualine_c_inactive', s:none, s:bg1)
+
+" }}}
 
 " Filetype specific -----------------------------------------------------------
 " Diff: {{{
